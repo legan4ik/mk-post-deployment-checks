@@ -1,11 +1,27 @@
 import os
 import yaml
-
+import requests
 import salt.client as client
 
+class salt_remote:
+    def cmd(self, tgt, fun, param=None,expr_form=None):
+        config = get_configuration(__file__)
+        url = 'http://10.100.0.5:6969'
+        headers = {'Accept':'application/json'}
+        login_payload = {'username':'salt','password':config['salt_pwd'],'eauth':'pam'}
+        accept_key_payload = {'fun': fun,'tgt':tgt,'client':'local','expr_form':expr_form}
+        if param:
+            accept_key_payload['arg']=param
 
-def init_salt_client():
-    local = client.LocalClient()
+        login_request = requests.post(os.path.join(url,'login'),headers=headers,data=login_payload)
+        request = requests.post(url,headers=headers,data=accept_key_payload,cookies=login_request.cookies)
+        return request.json()['return'][0]
+
+
+@pytest.fixture
+def local_salt_client():
+    #local = client.LocalClient()
+    local = salt_remote()
     return local
 
 
