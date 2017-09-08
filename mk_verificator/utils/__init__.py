@@ -1,7 +1,7 @@
 import os
 import yaml
 import requests
-import salt.client as client
+#import salt.client as client
 
 class salt_remote:
     def cmd(self, tgt, fun, param=None,expr_form=None):
@@ -18,7 +18,6 @@ class salt_remote:
         return request.json()['return'][0]
 
 
-@pytest.fixture
 def local_salt_client():
     #local = client.LocalClient()
     local = salt_remote()
