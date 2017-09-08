@@ -18,7 +18,7 @@ class salt_remote:
         return request.json()['return'][0]
 
 
-def local_salt_client():
+def init_salt_client():
     #local = client.LocalClient()
     local = salt_remote()
     return local
