@@ -1,18 +1,18 @@
 ---
-admin_username: admin
-admin_password: <password>
-admin_project_id: <project_id>
-url_v3: ""
+# Settings for glance test
+#admin_username: admin
+#admin_password: <password>
+#admin_project_id: <project_id>
+#url_v3: ""
 
-size_image_mb: 4000
-glance_version: '2'
+#size_image_mb: 4000
+#glance_version: '2'
 
 log_dir: /var/log/mk_verificator
 
-salt_url: <salt_url> 
-salt_pwd: <salt_pwd>
+# Credentials for Salt master
+#salt_url: <salt_url> 
+#salt_pwd: <salt_pwd>
 
+# List of nodes to skip in tests
 skipped_nodes: []
-
-ceph_monitors: ['mon01*', 'mon02*', 'mon03*']
-ceph_osd_probe_node: ['mon01*']
