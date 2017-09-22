@@ -8,6 +8,11 @@ from keystoneauth1 import session
 
 
 @pytest.fixture
+def local_salt_client():
+    return utils.init_salt_client()
+
+
+@pytest.fixture
 def glance_client():
     config = utils.get_configuration(__file__)
 

@@ -46,7 +46,10 @@ def get_groups(config):
 
     for node in active_nodes:
         index = re.search('[0-9]{1,3}$', node.split('.')[0])
-        group_name = node.split('.')[0][:-len(index.group(0))]
+        if index:
+            group_name = node.split('.')[0][:-len(index.group(0))]
+        else:
+            group_name = node
         if group_name not in skipped_group and group_name not in groups:
             groups.append(group_name)
     test_groups = []
