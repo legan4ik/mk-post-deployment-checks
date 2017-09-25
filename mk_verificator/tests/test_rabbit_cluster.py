@@ -27,15 +27,13 @@ def test_checking_rabbitmq_cluster(local_salt_client):
 
     # find actual cluster size for each node
     for node in rabbit_actual_data:
-        list_of_nodes = 0
+        running_nodes_count = 0
         for line in rabbit_actual_data[node].split('\n'):
             if 'running_nodes' in line:
-                list_of_nodes = \
-                    re.findall(r'\'rabbit@(.+?)\'', line, re.IGNORECASE)
-
+                running_nodes_count = line.count('rabbit@')
         # update control dictionary with values
         # {node:actual_cluster_size_for_node}
-        if required_cluster_size_dict[node] != len(list_of_nodes):
+        if required_cluster_size_dict[node] != running_nodes_count:
             control_dict.update({node: list_of_nodes})
 
     assert not len(control_dict), "Inconsistency found within cloud. " \
