@@ -36,6 +36,6 @@ def test_check_services(local_salt_client, group):
             row.sort()
             row.insert(0, srv)
             pkts_data.append(row)
-    assert len(pkts_data) <= config["skip_number"], \
+    assert len(pkts_data) <= 1, \
         "Several problems found for {0} group: {1}".format(
         group, json.dumps(pkts_data, indent=4))

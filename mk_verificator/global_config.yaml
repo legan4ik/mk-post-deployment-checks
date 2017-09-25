@@ -16,3 +16,11 @@ log_dir: /var/log/mk_verificator
 
 # List of nodes to skip in tests
 skipped_nodes: []
+
+# settings for MTU test
+#skipped_ifaces: ["bonding_masters", "lo"]
+#expected_mtu:
+# #example
+#  node-01:
+#    eth0: '1500'
+#    eth1: '9000'
