@@ -1,8 +1,6 @@
 import pytest
-import os
-import requests
 import mk_verificator.utils as utils
-import glanceclient.client as gl_client
+#import glanceclient.client as gl_client
 from keystoneauth1.identity import v3
 from keystoneauth1 import session
 

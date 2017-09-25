@@ -4,10 +4,10 @@ from mk_verificator import utils
 
 
 @pytest.mark.parametrize(
-    "group",
-    utils.get_groups(utils.get_configuration(__file__))
+    "node",
+    utils.get_active_nodes(utils.get_configuration(__file__))
 )
-def test_ntp_sync(group, local_salt_client):
+def test_ntp_sync(local_salt_client, node):
     config = utils.get_configuration(__file__)
     fail = {}
 
@@ -15,7 +15,7 @@ def test_ntp_sync(group, local_salt_client):
         os.uname()[1] + '*', 'cmd.run', ['date +%s']).values()[0])
 
     nodes_time = local_salt_client.cmd(
-        group, 'cmd.run', ['date +%s'], expr_form='pcre')
+        node, 'cmd.run', ['date +%s'], expr_form='pcre')
 
     for node, time in nodes_time.iteritems():
         if (int(time) - saltmaster_time) > config["time_deviation"] or \
