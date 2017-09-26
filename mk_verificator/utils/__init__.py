@@ -7,14 +7,17 @@ import re
 class salt_remote:
     def cmd(self, tgt, fun, param=None,expr_form=None):
         config = get_configuration(__file__)
+        for salt_cred in ['SALT_USERNAME', 'SALT_PASSWORD', 'SALT_URL']:
+            if os.environ.get(salt_cred):
+                config[salt_cred] = os.environ[salt_cred]
         headers = {'Accept':'application/json'}
-        login_payload = {'username':'salt','password':config['salt_pwd'],'eauth':'pam'}
+        login_payload = {'username':config['SALT_USERNAME'],'password':config['SALT_PASSWORD'],'eauth':'pam'}
         accept_key_payload = {'fun': fun,'tgt':tgt,'client':'local','expr_form':expr_form}
         if param:
             accept_key_payload['arg']=param
 
-        login_request = requests.post(os.path.join(config['salt_url'],'login'),headers=headers,data=login_payload)
-        request = requests.post(config['salt_url'],headers=headers,data=accept_key_payload,cookies=login_request.cookies)
+        login_request = requests.post(os.path.join(config['SALT_URL'],'login'),headers=headers,data=login_payload)
+        request = requests.post(config['SALT_URL'],headers=headers,data=accept_key_payload,cookies=login_request.cookies)
         return request.json()['return'][0]
 
 
