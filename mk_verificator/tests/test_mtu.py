@@ -12,7 +12,7 @@ def test_mtu(local_salt_client, group):
     skipped_ifaces = config["skipped_ifaces"]
     total = {}
     network_info = local_salt_client.cmd(
-        group, 'cmd.run', ['ls /sys/class/net/ | grep -v "veth" | grep -v "cali"'], expr_form='pcre')
+        group, 'cmd.run', ['ls /sys/class/net/ | grep -v "veth" | grep -v "tap" | grep -v "cali"'], expr_form='pcre')
 
     kvm_nodes = local_salt_client.cmd(
         'salt:control', 'test.ping', expr_form='pillar').keys()
