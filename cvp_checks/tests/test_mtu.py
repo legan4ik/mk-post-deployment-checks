@@ -12,7 +12,7 @@ def test_mtu(local_salt_client, group):
     skipped_ifaces = config["skipped_ifaces"]
     total = {}
     network_info = local_salt_client.cmd(
-        group, 'cmd.run', ['ls /sys/class/net/ | grep -v "veth" | grep -v "tap" | grep -v "cali"'], expr_form='pcre')
+        group, 'cmd.run', ['ls /sys/class/net/'], expr_form='pcre')
 
     kvm_nodes = local_salt_client.cmd(
         'salt:control', 'test.ping', expr_form='pillar').keys()
@@ -32,12 +32,14 @@ def test_mtu(local_salt_client, group):
         node_ifaces = ifaces_info.split('\n')
         ifaces = {}
         for iface in node_ifaces:
-            if iface in skipped_ifaces:
-                continue
-            iface_mtu = local_salt_client.cmd(node, 'cmd.run',
+            for skipped_iface in skipped_ifaces:
+                if skipped_iface in iface:
+                    break
+            else:
+                iface_mtu = local_salt_client.cmd(node, 'cmd.run',
                                                   ['cat /sys/class/'
                                                    'net/{}/mtu'.format(iface)])
-            ifaces[iface] = iface_mtu.get(node)
+                ifaces[iface] = iface_mtu.get(node)
         total[node] = ifaces
 
     nodes = []

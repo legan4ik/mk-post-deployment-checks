@@ -1,29 +1,15 @@
 ---
-# Settings for glance test
-#admin_username: admin
-#admin_password: <password>
-#admin_project_id: <project_id>
-#url_v3: ""
-
-#size_image_mb: 4000
-#glance_version: '2'
-log_dir: /var/log/mk_verificator
-
-# Credentials for Salt master
+# MANDATORY: Credentials for Salt master
 #SALT_URL: <salt_url> 
 #SALT_USERNAME: <salt_usr>
 #SALT_PASSWORD: <salt_pwd>
 
-# ntp test setting
-time_deviation: 30
-
 # List of nodes to skip in tests
 skipped_nodes: []
 
-# settings for MTU test
-skipped_ifaces: ["bonding_masters", "lo"]
-#expected_mtu:
-# #example
-#  node-01:
-#    eth0: '1500'
-#    eth1: '9000'
+# ntp test setting
+time_deviation: 30
+
+# mtu test setting
+# mask for interfaces to skip
+skipped_ifaces: ["bonding_masters", "lo", "veth", "tap", "cali"]
