@@ -1,5 +1,5 @@
 import pytest
-from mk_verificator import utils
+from cvp_checks import utils
 
 
 @pytest.mark.parametrize(

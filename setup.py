@@ -10,13 +10,11 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='mk_verificator',
-    version='0.0.1',
-    description='set of tools for MK deployments verification',
+    name='cvp-sanity',
+    version='0.1',
+    description='set of tests for MCP verification',
     long_description=readme,
-    author='Michael Senin',
-    author_email='msenin94@gmail.com',
-    url='https://github.com/msenin94/mk-post-deployment-checks',
+    author='Mirantis',
     license=license,
     packages=find_packages(exclude=('tests', 'docs'))
 )

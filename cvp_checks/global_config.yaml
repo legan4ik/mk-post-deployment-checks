@@ -14,6 +14,9 @@ log_dir: /var/log/mk_verificator
 #SALT_USERNAME: <salt_usr>
 #SALT_PASSWORD: <salt_pwd>
 
+# ntp test setting
+time_deviation: 30
+
 # List of nodes to skip in tests
 skipped_nodes: []
 

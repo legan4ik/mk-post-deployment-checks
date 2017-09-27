@@ -1,4 +1,4 @@
-from mk_verificator import utils
+from cvp_checks import utils
 
 
 def test_check_ceph_osd(local_salt_client):
