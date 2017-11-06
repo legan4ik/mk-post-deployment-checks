@@ -14,8 +14,8 @@ nets = {"public": "192.0.0.0/24",
 # target_nodes=['ctl*','des*','asc*']
 # you can choose some particular nodes (pay attention to format)
 target_nodes = ['des-01.*', 'asc-01.*']
-# you can even skip nodes from the list (not implemented yet)
-# skipped_nodes = ['cpu-035.jpe1.jiocloud.com']
+# you can even skip nodes from the list (not implemented yet), full fqdn please
+# skipped_nodes = ['cpu-035']
 # you can define regex by your own (perl-type regex, -E option in salt)
 nodes_regex = ''
 # tbd maybe define networks for each node
